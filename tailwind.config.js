@@ -5,8 +5,20 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'primary': '#10a09e',
+      },
+      backgroundColor: {
+        'primary': '#10a09e',
+      },
+      borderColor: {
+        'primary': '#10a09e',
+      }
+    },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-animated')
+  ],
 }
 
