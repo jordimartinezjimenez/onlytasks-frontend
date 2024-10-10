@@ -1,7 +1,7 @@
 export default function Footer() {
     return (
         <footer className="py-5">
-            <p className="text-center">All rights reserved ©{new Date().getFullYear()}</p>
+            <p className="text-center">Copyright © {new Date().getFullYear()} OnlyTasks. All rights reserved</p>
         </footer>
     )
 }
