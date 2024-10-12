@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    overflow: visible !important;
+    padding-right: 0 !important;
+}
+
 .dark-box:before {
     content: '';
     position: absolute;
@@ -10,9 +15,12 @@
     left: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 0.75rem;
-    -webkit-border-radius: 0.75rem;
-    -moz-border-radius: 0.75rem;
-    -ms-border-radius: 0.75rem;
-    -o-border-radius: 0.75rem;
+}
+
+.shadow-bg {
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; */
+
+    box-shadow: rgba(16, 160, 158, 0.2) 3px 1px 8px 0px, rgba(16, 160, 158, 0.25) -3px -1px 8px 0px;
+    /* box-shadow: rgba(16, 160, 158, 0.25) 2.5px 0.25px 4px 0px, rgba(16, 160, 158, 0.8) -2.5px -0.25px 4px 0px; */
+    /* box-shadow: rgb(16, 160, 158) 3px 3px 6px 0px inset, rgba(16, 160, 158, 0.5) -3px -3px 6px 1px inset; */
 }

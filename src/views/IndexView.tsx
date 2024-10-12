@@ -25,7 +25,7 @@ export default function IndexView() {
         <section className="max-w-[80rem] mx-auto text-center flex flex-col justify-center items-center gap-y-5 md:gap-y-10 mt-16">
             <Badge />
             <h1
-                className="text-balance text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium text-transparent py-6 leading-none tracking-tighter bg-gradient-to-br dark:from-white from-black from-30% dark:to-white/40 to-black/40 bg-clip-text"
+                className="text-balance text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium text-transparent py-6 leading-none tracking-tighter bg-gradient-to-br from-white from-30% to-white/40 bg-clip-text"
             >OnlyTasks is the best way to manage tasks of projects.</h1>
             <p className="text-balance text-lg md:text-xl tracking-tight text-gray-400">
                 Beautifully designed, animated components and templates built with <br className="hidden md:block" />Tailwind CSS, React, and Framer Motion.
@@ -37,9 +37,9 @@ export default function IndexView() {
             >
                 <span>Get Started for Free</span><ArrowLongRightIcon className="w-5 h-5" />
             </Link>
-            <div className="relative rounded-xl dark-box before:bg-gradient-to-b from-transparent to-75% to-neutral-900 example-2">
+            <div className="relative rounded-lg dark-box before:bg-gradient-to-b from-transparent to-80% to-neutral-950">
                 <div className="inner">
-                    <img src="ss.png" alt="" className="rounded-xl" />
+                    <img src="ss.png" alt="" className="rounded-lg" />
                 </div>
             </div>
         </section>

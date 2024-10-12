@@ -1,24 +1,33 @@
-import { Link, useNavigate } from "react-router-dom"
-import { useForm } from "react-hook-form"
-import { useMutation } from "@tanstack/react-query"
-import { toast } from "react-toastify"
-import ProjectForm from "@/components/projects/ProjectForm"
-import { ProjectFormData } from "@/types"
-import { createProject } from "@/api/ProjectAPI"
+import { Link, useNavigate } from "react-router-dom";
+import ProjectForm from "./ProjectForm";
+import { Project, ProjectFormData } from "@/types";
+import { useForm } from "react-hook-form";
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { updateProject } from "@/api/ProjectAPI"
+import { toast } from "react-toastify";
 
-export default function CreateProjectView() {
+type EditProjectFormProps = {
+    data: ProjectFormData
+    projectId: Project['_id']
+}
+
+export default function EditProjectForm({ data, projectId }: EditProjectFormProps) {
 
     const navigate = useNavigate()
+
     const initialValues: ProjectFormData = {
-        projectName: "",
-        clientName: "",
-        description: ""
+        projectName: data.projectName,
+        clientName: data.clientName,
+        description: data.description
     }
     const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: initialValues })
 
+    const queryClient = useQueryClient()
     const mutation = useMutation({
-        mutationFn: createProject,
+        mutationFn: updateProject,
         onSuccess: (res) => {
+            queryClient.invalidateQueries({ queryKey: ["projects"] })
+            queryClient.invalidateQueries({ queryKey: ["editProject", projectId] })
             toast.success(res)
             navigate("/projects")
         },
@@ -28,21 +37,19 @@ export default function CreateProjectView() {
     })
 
     const handleForm = (formData: ProjectFormData) => {
-        mutation.mutate(formData)
+        const data = {
+            formData,
+            projectId
+        }
+        mutation.mutate(data)
     }
-
-    // const handleForm = async (formData: ProjectFormData) => {
-    //     const res = await createProject(formData)
-    //     toast.success(res)
-    //     navigate("/projects")
-    // }
 
     return (
         <>
             <div className="max-w-3xl mx-auto">
-                <h1 className="text-5xl font-black text-slate-50">New Project</h1>
+                <h1 className="text-5xl font-black text-slate-50">Edit Project</h1>
                 <div className="flex flex-col md:flex-row justify-between">
-                    <p className="text-2xl font-light text-gray-400 mt-5">Fill out the following form to create a project</p>
+                    <p className="text-2xl font-light text-gray-400 mt-5">Fill out the following form to edit the project</p>
                     <nav className="my-5">
                         <Link
                             to="/projects"
@@ -59,7 +66,7 @@ export default function CreateProjectView() {
                         register={register}
                         errors={errors}
                     />
-                    <input type="submit" value="Create project"
+                    <input type="submit" value="Save changes"
                         className="bg-primary hover:bg-primary/90 w-full p-3 text-white uppercase font-bol cursor-pointer transition-colors rounded-lg"
                     />
                 </form>
