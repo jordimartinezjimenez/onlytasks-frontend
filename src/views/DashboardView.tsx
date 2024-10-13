@@ -14,7 +14,7 @@ export default function DashboardView() {
     })
 
     const queryClient = useQueryClient()
-    const mutation = useMutation({
+    const { mutate } = useMutation({
         mutationFn: deleteProject,
         onSuccess: (res) => {
             queryClient.invalidateQueries({ queryKey: ["projects"] })
@@ -47,7 +47,7 @@ export default function DashboardView() {
                             <li key={project._id} className="flex justify-between gap-x-6 px-5 py-10 bg-neutral-900/80 rounded-lg">
                                 <div className="flex min-w-0 gap-x-4">
                                     <div className="min-w-0 flex-auto space-y-2">
-                                        <Link to={``}
+                                        <Link to={`/projects/${project._id}`}
                                             className=" cursor-pointer hover:underline text-3xl font-bold"
                                         >{project.projectName}</Link>
                                         <p className="text-sm text-gray-400">
@@ -87,7 +87,7 @@ export default function DashboardView() {
                                                     <button
                                                         type='button'
                                                         className='block px-3 py-1 text-sm leading-6 text-rose-500 hover:text-rose-600'
-                                                        onClick={() => mutation.mutate(project._id)}
+                                                        onClick={() => mutate(project._id)}
                                                     >
                                                         Delete Project
                                                     </button>

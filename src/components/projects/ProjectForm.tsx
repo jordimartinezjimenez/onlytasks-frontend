@@ -12,7 +12,7 @@ export default function ProjectForm({ register, errors }: ProjectFormProps) {
         <>
             <div className="mb-5 space-y-3">
                 <label htmlFor="projectName" className="text-sm uppercase font-bold">
-                    Project Name
+                    Name
                 </label>
                 <input
                     id="projectName"
@@ -31,7 +31,7 @@ export default function ProjectForm({ register, errors }: ProjectFormProps) {
 
             <div className="mb-5 space-y-3">
                 <label htmlFor="clientName" className="text-sm uppercase font-bold">
-                    Client Name
+                    Client
                 </label>
                 <input
                     id="clientName"

@@ -4,7 +4,7 @@ import { isAxiosError } from "axios"
 
 export async function createProject(formData: ProjectFormData) {
     try {
-        const { data } = await api.post('/projects', formData)
+        const { data } = await api.post<string>('/projects', formData)
         return data
     } catch (error) {
         if (isAxiosError(error) && error.response) {
@@ -36,12 +36,12 @@ export async function getProjectById(id: Project['_id']) {
     }
 }
 
-type ProjectAPIType = {
+type ProjectAPI = {
     formData: ProjectFormData
     projectId: Project['_id']
 }
 
-export async function updateProject({ formData, projectId }: ProjectAPIType) {
+export async function updateProject({ formData, projectId }: ProjectAPI) {
     try {
         const { data } = await api.put<string>(`/projects/${projectId}`, formData)
         return data

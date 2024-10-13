@@ -23,7 +23,7 @@ export default function EditProjectForm({ data, projectId }: EditProjectFormProp
     const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: initialValues })
 
     const queryClient = useQueryClient()
-    const mutation = useMutation({
+    const { mutate } = useMutation({
         mutationFn: updateProject,
         onSuccess: (res) => {
             queryClient.invalidateQueries({ queryKey: ["projects"] })
@@ -41,24 +41,24 @@ export default function EditProjectForm({ data, projectId }: EditProjectFormProp
             formData,
             projectId
         }
-        mutation.mutate(data)
+        mutate(data)
     }
 
     return (
         <>
             <div className="max-w-3xl mx-auto">
-                <h1 className="text-5xl font-black text-slate-50">Edit Project</h1>
+                <h1 className="text-5xl font-black">Edit Project</h1>
                 <div className="flex flex-col md:flex-row justify-between">
                     <p className="text-2xl font-light text-gray-400 mt-5">Fill out the following form to edit the project</p>
                     <nav className="my-5">
                         <Link
                             to="/projects"
-                            className="bg-primary hover:bg-primary/80 px-5 py-3 text-slate-50 text-lg font-bold cursor-pointer transition-colors rounded-lg"
+                            className="bg-primary hover:bg-primary/80 px-5 py-3 text-lg font-bold cursor-pointer transition-colors rounded-lg"
                         >Back to projects</Link>
                     </nav>
                 </div>
                 <form
-                    className="mt-10 bg-neutral-900/80 shadow-lg p-10 rounded-lg"
+                    className="mt-10 bg-neutral-900/90 shadow-lg p-10 rounded-lg"
                     onSubmit={handleSubmit(handleForm)}
                     noValidate
                 >
@@ -67,7 +67,7 @@ export default function EditProjectForm({ data, projectId }: EditProjectFormProp
                         errors={errors}
                     />
                     <input type="submit" value="Save changes"
-                        className="bg-primary hover:bg-primary/90 w-full p-3 text-white uppercase font-bol cursor-pointer transition-colors rounded-lg"
+                        className="bg-primary hover:bg-primary/90 w-full p-3 uppercase font-bol cursor-pointer transition-colors rounded-lg"
                     />
                 </form>
             </div>
