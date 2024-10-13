@@ -39,7 +39,7 @@ export default function IndexView() {
             </Link>
             <div className="relative rounded-lg dark-box before:bg-gradient-to-b from-transparent to-80% to-neutral-950">
                 <div className="inner">
-                    <img src="ss.png" alt="" className="rounded-lg" />
+                    <img src="ss.webp" alt="" className="rounded-lg" />
                 </div>
             </div>
         </section>

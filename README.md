@@ -1,50 +1,43 @@
-# React + TypeScript + Vite
+# ![ProductManager](./public/gh/ss.png)
+# OnlyTasks
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> A small webapp based on MERN stack.
 
-Currently, two official plugins are available:
+## Demo 🎮
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+> 📝 First time deployment may take a few seconds because of the free hosting service.
 
-## Expanding the ESLint configuration
+Here is a working live demo:\
+⌛️ Coming soon
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Link to API documentation:\
+⌛️ Coming soon
 
-- Configure the top-level `parserOptions` property like this:
+## Project preview 💻
+⌛️ Coming soon
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Technologies 🛠️
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+The following technologies were used to develop this application:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- npm
+- Vite
+- React
+- TypeScript
+- TailwindCSS
+- React Router DOM
+- NodeJS
+- ExpressJS
+- Zod
+- Mongoose
+- MongoDB
+- HTML
+- JavaScript
+- ⌛️ Coming soon
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Author
+
+- **Name:** Jordi Martinez Jimenez
+- **Contact:** [![GMAIL](https://img.shields.io/badge/jordimj63%40gmail.com%20-%20%20DISCORD?style=social&logo=GMAIL&labelColor=black&color=white)](mailto:naviomaya@gmail.com)
+- **Demo:** [Demo](https://github.com/jordimartinezjimenez/onlytasks-frontend/)
+- **API Doc:** [Demo](https://github.com/jordimartinezjimenez/onlytasks-backend/)
