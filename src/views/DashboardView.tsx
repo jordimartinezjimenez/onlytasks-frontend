@@ -44,7 +44,7 @@ export default function DashboardView() {
                     <ul role="list" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5 text-slate-50">
                         {data.map((project) => (
                             // <li key={project._id} className="flex justify-between gap-x-6 px-5 py-10 shadow-[inset_0rem_0.2rem_0.4rem_0_rgb(0,0,0,0.1)] bg-[#3d4552] rounded-lg border-b border-b-slate-600 ">
-                            <li key={project._id} className="flex justify-between gap-x-6 px-5 py-10 bg-neutral-900/80 rounded-lg">
+                            <li key={project._id} className="flex justify-between gap-x-6 px-5 py-10 bg-neutral-900/80 backdrop-blur rounded-lg">
                                 <div className="flex min-w-0 gap-x-4">
                                     <div className="min-w-0 flex-auto space-y-2">
                                         <Link to={`/projects/${project._id}`}
@@ -74,7 +74,7 @@ export default function DashboardView() {
                                                 <MenuItem>
                                                     <Link to={`/projects/${project._id}`}
                                                         className='block px-3 py-1 text-sm leading-6 hover:text-gray-300'>
-                                                        Show Project
+                                                        View Project
                                                     </Link>
                                                 </MenuItem>
                                                 <MenuItem>
