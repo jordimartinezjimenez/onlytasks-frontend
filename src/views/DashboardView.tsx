@@ -29,7 +29,7 @@ export default function DashboardView() {
 
     if (data) return (
         <>
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-7xl mx-auto">
                 <h1 className="text-5xl font-black text-slate-50">My Projects</h1>
                 <div className='flex flex-col md:flex-row justify-between'>
                     <p className="text-2xl font-light text-gray-400 mt-5">Manage and administer your projects</p>
@@ -41,7 +41,7 @@ export default function DashboardView() {
                     </nav>
                 </div>
                 {data.length ? (
-                    <ul role="list" className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5 text-slate-50">
+                    <ul role="list" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5 text-slate-50">
                         {data.map((project) => (
                             // <li key={project._id} className="flex justify-between gap-x-6 px-5 py-10 shadow-[inset_0rem_0.2rem_0.4rem_0_rgb(0,0,0,0.1)] bg-[#3d4552] rounded-lg border-b border-b-slate-600 ">
                             <li key={project._id} className="flex justify-between gap-x-6 px-5 py-10 bg-neutral-900/80 rounded-lg">
@@ -53,7 +53,7 @@ export default function DashboardView() {
                                         <p className="text-sm text-gray-400">
                                             Client: {project.clientName}
                                         </p>
-                                        <p className="text-sm text-gray-400">
+                                        <p className="text-sm text-gray-400 as text-ellipsis line-clamp-3 overflow-hidden text-pretty">
                                             {project.description}
                                         </p>
                                     </div>
@@ -69,7 +69,7 @@ export default function DashboardView() {
                                             leave="transition ease-in duration-75" leaveFrom="transform opacity-100 scale-100"
                                             leaveTo="transform opacity-0 scale-95">
                                             <MenuItems
-                                                className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-neutral-800 py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none"
+                                                className="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-neutral-800 py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none"
                                             >
                                                 <MenuItem>
                                                     <Link to={`/projects/${project._id}`}

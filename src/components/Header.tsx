@@ -36,7 +36,7 @@ export default function Header() {
         // </header>
         <header className="fixed left-0 top-0 z-50 w-full animate-fade-down border-b border-b-slate-500 backdrop-blur-[12px]">
             <div className="container flex items-center justify-around sm:justify-between mx-auto h-[3.5rem]">
-                <Link to="/" className="text-md">OnlyTasks</Link>
+                <Link to="/projects" className="text-md">OnlyTasks</Link>
                 <div className="flex gap-x-2 items-center">
                     <a className="text-sm" href="#">Log in</a>
                     <a className="text-sm px-4 py-2 rounded-md bg-neutral-800 hover:bg-neutral-800/90" href="#">Sign up</a>
