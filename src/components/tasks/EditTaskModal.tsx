@@ -1,36 +1,34 @@
 import { Fragment } from 'react';
 import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from '@headlessui/react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { useForm } from 'react-hook-form'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useNavigate, useParams } from 'react-router-dom';
+import { Task, TaskFormData } from '@/types';
+import { useForm } from 'react-hook-form';
 import TaskForm from './TaskForm';
-import { TaskFormData } from '@/types';
-import { createTask } from '@/api/TaskAPI';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
+import { updateTask } from '@/api/TaskAPI';
 
-export default function AddTaskModal() {
+type EditTaskModalProps = {
+    data: Task,
+    taskId: Task['_id']
+}
+
+export default function EditTaskModal({ data, taskId }: EditTaskModalProps) {
 
     const navigate = useNavigate()
-
-    // Know if Modal exists
-    const location = useLocation()
-    const queryParams = new URLSearchParams(location.search)
-    const modalTask = queryParams.get("newTask")
-    // const show = modalTask ? true : false
-
-    // Get projectId
     const params = useParams()
     const projectId = params.projectId!
 
     const initialValues: TaskFormData = {
-        name: "",
-        description: ""
+        name: data.name,
+        description: data.description,
+        // status: data.status
     }
     const { register, handleSubmit, reset, formState: { errors } } = useForm<TaskFormData>({ defaultValues: initialValues })
 
     const queryClient = useQueryClient()
     const { mutate } = useMutation({
-        mutationFn: createTask,
+        mutationFn: updateTask,
         onSuccess: (res) => {
             queryClient.invalidateQueries({ queryKey: ["project", projectId] })
             toast.success(res)
@@ -42,16 +40,17 @@ export default function AddTaskModal() {
         }
     })
 
-    const handleCreateTask = (formData: TaskFormData) => {
+    const handleEditTask = (formData: TaskFormData) => {
         const data = {
             formData,
-            projectId
+            projectId,
+            taskId
         }
         mutate(data)
     }
 
     return (
-        <Transition appear show={!!modalTask} as={Fragment}>
+        <Transition appear show={true} as={Fragment}>
             <Dialog as="div" className="relative z-10" onClose={() => navigate(location.pathname, { replace: true })}>
                 <TransitionChild
                     as={Fragment}
@@ -81,16 +80,16 @@ export default function AddTaskModal() {
                                     as="h3"
                                     className="font-black text-4xl  my-5"
                                 >
-                                    New Task
+                                    Edit Task
                                 </DialogTitle>
 
-                                <p className="text-xl font-bold">Fill out the form and create  {''}
+                                <p className="text-xl font-bold">Make changes to this form to edit {''}
                                     <span className="text-primary">a task</span>
                                 </p>
                                 <form
                                     className='mt-10 space-y-3'
                                     noValidate
-                                    onSubmit={handleSubmit(handleCreateTask)}
+                                    onSubmit={handleSubmit(handleEditTask)}
                                 >
                                     <TaskForm
                                         register={register}
