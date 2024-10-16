@@ -1,19 +1,23 @@
-import { Link } from "react-router-dom"
-import { PinInput, PinInputField } from "@chakra-ui/pin-input"
-import { useState } from "react"
-import { ConfirmToken } from "@/types"
-import { useMutation } from "@tanstack/react-query"
-import { confirmAccount } from "@/api/AuthAPI"
-import { toast } from "react-toastify"
+import { validateToken } from '@/api/AuthAPI';
+import { ConfirmToken } from '@/types';
+import { PinInput, PinInputField } from '@chakra-ui/pin-input'
+import { useMutation } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-export default function ConfirmAccountView() {
+type NewPasswordTokenProps = {
+    token: ConfirmToken['token']
+    setToken: React.Dispatch<React.SetStateAction<string>>
+    setIsValidToken: React.Dispatch<React.SetStateAction<boolean>>
+}
 
-    const [token, setToken] = useState<ConfirmToken['token']>("")
+export default function NewPasswordToken({ token, setToken, setIsValidToken }: NewPasswordTokenProps) {
 
     const { mutate } = useMutation({
-        mutationFn: confirmAccount,
+        mutationFn: validateToken,
         onSuccess: (res) => {
             toast.success(res)
+            setIsValidToken(true)
         },
         onError: (error) => {
             toast.error(error.message)
@@ -23,20 +27,14 @@ export default function ConfirmAccountView() {
     const handleChange = (token: ConfirmToken['token']) => {
         setToken(token)
     }
-
     const handleComplete = (token: ConfirmToken['token']) => {
         mutate({ token })
     }
 
     return (
         <>
-            {/* <h1 className="text-5xl font-black text-center text-balance">Confirm your Account</h1> */}
-            <p className="text-2xl font-light mt-5 text-center text-balance">
-                Enter the code you received by email to {''}
-                <span className=" text-primary font-bold">confirm your account</span>
-            </p>
             <form
-                className="space-y-8 p-10 bg-neutral-900/80 rounded-lg mt-10"
+                className="space-y-8 p-10 rounded-lg bg-neutral-900/80 mt-10"
             >
                 <label
                     className="font-normal text-2xl text-center block"
@@ -56,7 +54,6 @@ export default function ConfirmAccountView() {
                     </PinInput>
                 </div>
             </form>
-
             <nav className="mt-10 flex flex-col space-y-4 group">
                 <Link
                     to='/auth/request-code'
@@ -65,7 +62,6 @@ export default function ConfirmAccountView() {
                     Request a <span className=" text-primary group-hover:text-primary/90 font-bold transition-colors">new Code</span>
                 </Link>
             </nav>
-
         </>
     )
 }

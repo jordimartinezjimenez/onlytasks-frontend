@@ -37,7 +37,7 @@ export default function SignupView() {
     return (
         <>
             {/* <h1 className="text-5xl font-black text-white">Sign Up</h1> */}
-            <p className="text-2xl font-light text-center mt-5">
+            <p className="text-2xl font-light text-center mt-5 text-balance">
                 Fill out the form to {''}
                 <span className=" text-primary font-bold">create your account</span>
             </p>
@@ -137,11 +137,19 @@ export default function SignupView() {
                 />
             </form>
 
-            <nav className="mt-10 flex flex-col space-y-4 group">
-                <Link
-                    to="/auth/login"
-                    className="text-center text-gray-300 font-normal group-hover:text-gray-300/90 transition-colors"
-                >Already have an account? <span className=" text-primary group-hover:text-primary/90 font-bold transition-colors">Log in</span></Link>
+            <nav className="mt-10 space-y-4">
+                <div className="group flex flex-col">
+                    <Link
+                        to="/auth/login"
+                        className="text-center text-gray-300 font-normal group-hover:text-gray-300/90 transition-colors"
+                    >Already have an account? <span className=" text-primary group-hover:text-primary/90 font-bold transition-colors">Log in</span></Link>
+                </div>
+                <div className="group flex flex-col">
+                    <Link
+                        to="/auth/forgot-password"
+                        className="text-center text-gray-300 font-normal group-hover:text-gray-300/90 transition-colors"
+                    >Forgot password? <span className=" text-primary group-hover:text-primary/90 font-bold transition-colors">Reset</span></Link>
+                </div>
             </nav>
         </>
     )

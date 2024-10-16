@@ -1,20 +1,19 @@
-import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query"
-import { RequestConfirmationCodeForm } from "../../types"
-import ErrorMessage from "@/components/ErrorMessage"
-import { requestConfirmatioCode } from "@/api/AuthAPI";
+import { ForgotPasswordForm } from "../../types";
+import ErrorMessage from "@/components/ErrorMessage";
+import { forgotPassword } from "@/api/AuthAPI";
 import { toast } from "react-toastify";
 
-export default function RegisterView() {
-    const initialValues: RequestConfirmationCodeForm = {
+export default function ForgotPasswordView() {
+    const initialValues: ForgotPasswordForm = {
         email: ''
     }
-
     const { register, handleSubmit, reset, formState: { errors } } = useForm({ defaultValues: initialValues });
 
     const { mutate } = useMutation({
-        mutationFn: requestConfirmatioCode,
+        mutationFn: forgotPassword,
         onSuccess: (res) => {
             toast.success(res)
             reset()
@@ -24,21 +23,19 @@ export default function RegisterView() {
         }
     })
 
-    const handleRequestCode = (formData: RequestConfirmationCodeForm) => {
+    const handleForgotPassword = (formData: ForgotPasswordForm) => {
         mutate(formData)
     }
 
     return (
         <>
-            {/* <h1 className="text-5xl font-black text-center text-balance">Request Confirmation Code</h1> */}
-            <p className="text-2xl font-light mt-5 text-center text-balance">
-                Enter your e-mail address to receive {''}
-                <span className=" text-primary font-bold"> a new code</span>
+            <p className="text-2xl font-light text-center mt-5 text-balance">
+                Forgot your password? Enter your email and {''}
+                <span className=" text-primary font-bold">reset it</span>
             </p>
-
             <form
-                onSubmit={handleSubmit(handleRequestCode)}
-                className="space-y-8 p-10 rounded-lg bg-neutral-900/80 mt-10"
+                onSubmit={handleSubmit(handleForgotPassword)}
+                className="space-y-8 p-10 bg-neutral-900/80 rounded-lg mt-10"
                 noValidate
             >
                 <div className="flex flex-col gap-5">
@@ -49,13 +46,13 @@ export default function RegisterView() {
                     <input
                         id="email"
                         type="email"
-                        placeholder="Email de Registro"
+                        placeholder="Your email"
                         className="w-full p-3 bg-neutral-800 border-gray-200 border"
                         {...register("email", {
-                            required: "El Email de registro es obligatorio",
+                            required: "Email is required",
                             pattern: {
                                 value: /\S+@\S+\.\S+/,
-                                message: "E-mail no válido",
+                                message: "Invalid email",
                             },
                         })}
                     />
@@ -66,8 +63,8 @@ export default function RegisterView() {
 
                 <input
                     type="submit"
-                    value='Send Code'
-                    className="bg-primary hover:bg-primary/90 w-full p-3 rounded-lg text-xl cursor-pointer"
+                    value='Send Email'
+                    className="bg-primary hover:bg-primary/90 w-full p-3 text-xl cursor-pointer rounded-lg"
                 />
             </form>
 
@@ -80,9 +77,9 @@ export default function RegisterView() {
                 </div>
                 <div className="group flex flex-col">
                     <Link
-                        to="/auth/forgot-password"
+                        to="/auth/signup"
                         className="text-center text-gray-300 font-normal group-hover:text-gray-300/90 transition-colors"
-                    >Forgot your password? <span className=" text-primary group-hover:text-primary/90 font-bold transition-colors">Reset</span></Link>
+                    >Don't have an account? <span className=" text-primary group-hover:text-primary/90 font-bold transition-colors">Create one</span></Link>
                 </div>
             </nav>
         </>
