@@ -22,7 +22,7 @@ export default function IndexView() {
         //         </div>
         //     </div>
         // </div>
-        <section className="max-w-7xl mx-auto text-center flex flex-col justify-center items-center gap-y-5 md:gap-y-10 mt-16">
+        <section className="max-w-7xl mx-auto text-center flex flex-col justify-center items-center gap-y-5 md:gap-y-10">
             <Badge />
             <h1
                 className="text-balance text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium text-transparent py-6 leading-none tracking-tighter bg-gradient-to-br from-white from-30% to-white/40 bg-clip-text"

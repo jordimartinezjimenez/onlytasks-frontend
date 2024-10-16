@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Logo from "./Logo";
 import NavMenu from "./NavMenu";
 
@@ -38,8 +38,8 @@ export default function Header() {
             <div className="container flex items-center justify-around sm:justify-between mx-auto h-[3.5rem]">
                 <Link to="/projects" className="text-md">OnlyTasks</Link>
                 <div className="flex gap-x-2 items-center">
-                    <a className="text-sm" href="#">Log in</a>
-                    <a className="text-sm px-4 py-2 rounded-md bg-neutral-800 hover:bg-neutral-800/90" href="#">Sign up</a>
+                    <NavLink className="text-sm" to="/auth/login">Log in</NavLink>
+                    <NavLink className="text-sm px-4 py-2 rounded-md bg-neutral-800 hover:bg-neutral-800/90" to="/auth/signup">Sign up</NavLink>
                     <NavMenu />
                 </div>
                 {/* <button className="md:hidden">

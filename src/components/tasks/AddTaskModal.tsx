@@ -99,7 +99,7 @@ export default function AddTaskModal() {
                                     <input
                                         type="submit"
                                         value="Add task"
-                                        className="bg-primary hover:bg-primary/90 w-full p-3 text-slate-50 uppercase font-bol cursor-pointer transition-colors rounded-lg"
+                                        className="bg-primary hover:bg-primary/90 w-full p-3 uppercase font-bol cursor-pointer transition-colors rounded-lg"
                                     />
                                 </form>
                             </DialogPanel>
