@@ -17,8 +17,8 @@ export default function Router() {
     return (
         <BrowserRouter>
             <Routes>
+                <Route path="/" element={<IndexView />} index />
                 <Route element={<AppLayout />}>
-                    <Route path="/" element={<IndexView />} index />
                     {/* <Route path="/" element={<DashboardView />} index /> */}
                     <Route path="/projects" element={<DashboardView />} />
                     <Route path="/projects/create" element={<CreateProjectView />} />

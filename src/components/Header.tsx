@@ -1,8 +1,13 @@
 import { Link, NavLink } from "react-router-dom";
-import Logo from "./Logo";
 import NavMenu from "./NavMenu";
+import { useAuth } from "@/hooks/useAuth";
+
+
 
 export default function Header() {
+
+    const { data } = useAuth()
+
     return (
         // <header className="bg-[#74d3d1] py-5 animate-fade-down">
         //     <div className="max-w-screen-2xl mx-auto flex flex-col lg:flex-row justify-between items-center">
@@ -36,11 +41,15 @@ export default function Header() {
         // </header>
         <header className="fixed left-0 top-0 z-50 w-full animate-fade-down border-b border-b-slate-500 backdrop-blur-[12px]">
             <div className="container flex items-center justify-around sm:justify-between mx-auto h-[3.5rem]">
-                <Link to="/projects" className="text-md">OnlyTasks</Link>
+                <Link to="/" className="text-md">OnlyTasks</Link>
                 <div className="flex gap-x-2 items-center">
-                    <NavLink className="text-sm" to="/auth/login">Log in</NavLink>
-                    <NavLink className="text-sm px-4 py-2 rounded-md bg-neutral-800 hover:bg-neutral-800/90" to="/auth/signup">Sign up</NavLink>
-                    <NavMenu />
+                    {!data ?
+                        <>
+                            <NavLink className="text-sm" to="/auth/login">Log in</NavLink>
+                            <NavLink className="text-sm px-4 py-2 rounded-md bg-neutral-800 hover:bg-neutral-800/90" to="/auth/signup">Sign up</NavLink>
+                        </>
+                        : <NavMenu name={data.name} />
+                    }
                 </div>
                 {/* <button className="md:hidden">
                 <span className="">Toggle menu</span>
