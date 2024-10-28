@@ -5,9 +5,12 @@ import { Link } from "react-router-dom"
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
 import { getProjects, deleteProject } from "@/api/ProjectAPI"
 import { toast } from 'react-toastify'
+import { useAuth } from '@/hooks/useAuth'
+import { isManager } from '@/utils/policies'
 
 export default function DashboardView() {
 
+    const { data: user, isLoading: authLoading } = useAuth()
     const { data, isLoading } = useQuery({
         queryKey: ["projects"],
         queryFn: getProjects,
@@ -25,9 +28,9 @@ export default function DashboardView() {
         }
     })
 
-    if (isLoading) return "Loading..."
+    if (isLoading && authLoading) return "Loading..."
 
-    if (data) return (
+    if (data && user) return (
         <>
             <div className="max-w-7xl mx-auto">
                 <h1 className="text-5xl font-black text-slate-50">My Projects</h1>
@@ -47,6 +50,14 @@ export default function DashboardView() {
                             <li key={project._id} className="flex justify-between gap-x-6 px-5 py-10 bg-neutral-900/80 backdrop-blur rounded-lg">
                                 <div className="flex min-w-0 gap-x-4">
                                     <div className="min-w-0 flex-auto space-y-2">
+                                        <div>
+                                            {isManager(project.manager, user._id) ?
+                                                <p className='font-bold text-xs uppercase bg-primary/10 text-primary border select-none border-primary rounded-lg inline-block py-1 px-5'
+                                                >Manager</p> :
+                                                <p className='font-bold text-xs uppercase bg-gray-400/10 text-gray-400 border select-none border-gray-400 rounded-lg inline-block py-1 px-5'
+                                                >Member</p>
+                                            }
+                                        </div>
                                         <Link to={`/projects/${project._id}`}
                                             className=" cursor-pointer hover:underline text-3xl font-bold"
                                         >{project.projectName}</Link>
@@ -77,21 +88,24 @@ export default function DashboardView() {
                                                         View Project
                                                     </Link>
                                                 </MenuItem>
-                                                <MenuItem>
-                                                    <Link to={`/projects/${project._id}/edit`}
-                                                        className='block px-3 py-1 text-sm leading-6 hover:text-gray-300'>
-                                                        Edit Project
-                                                    </Link>
-                                                </MenuItem>
-                                                <MenuItem>
-                                                    <button
-                                                        type='button'
-                                                        className='block px-3 py-1 text-sm leading-6 text-rose-500 hover:text-rose-600'
-                                                        onClick={() => mutate(project._id)}
-                                                    >
-                                                        Delete Project
-                                                    </button>
-                                                </MenuItem>
+                                                {isManager(project.manager, user._id) && (
+                                                    <>
+                                                        <MenuItem>
+                                                            <Link to={`/projects/${project._id}/edit`}
+                                                                className='block px-3 py-1 text-sm leading-6 hover:text-gray-300'>
+                                                                Edit Project
+                                                            </Link>
+                                                        </MenuItem>
+                                                        <MenuItem>
+                                                            <button
+                                                                type='button'
+                                                                className='block px-3 py-1 text-sm leading-6 text-rose-500 hover:text-rose-600'
+                                                                onClick={() => mutate(project._id)}
+                                                            >
+                                                                Delete Project
+                                                            </button>
+                                                        </MenuItem></>
+                                                )}
                                             </MenuItems>
                                         </Transition>
                                     </Menu>

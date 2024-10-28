@@ -39,19 +39,19 @@ export default function NavMenu({ name }: NavMenuProps) {
                     <div className="w-full lg:w-56 shrink rounded-xl bg-neutral-800 p-4 text-sm font-semibold leading-6 shadow-lg ring-1 ring-gray-900/5">
                         <p className='text-center'>Hola: {name}</p>
                         <Link
-                            to='/profile'
-                            className='block p-2 hover:text-slate-50/90'
-                        >Mi Perfil</Link>
-                        <Link
                             to='/projects'
                             className='block p-2 hover:text-slate-50/90'
-                        >Mis Proyectos</Link>
+                        >My Projects</Link>
+                        <Link
+                            to='/profile'
+                            className='block p-2 hover:text-slate-50/90'
+                        >Profile</Link>
                         <button
                             className='block p-2 hover:text-slate-50/90'
                             type='button'
                             onClick={logout}
                         >
-                            Cerrar Sesión
+                            Logout
                         </button>
                     </div>
                 </PopoverPanel>

@@ -9,9 +9,10 @@ import { deleteTask } from "@/api/TaskAPI"
 
 type TaskCardProps = {
     task: Task
+    canEdit: boolean
 }
 
-export default function TaskCard({ task }: TaskCardProps) {
+export default function TaskCard({ task, canEdit }: TaskCardProps) {
 
     const navigate = useNavigate()
     const params = useParams()
@@ -35,6 +36,7 @@ export default function TaskCard({ task }: TaskCardProps) {
                 <button
                     type="button"
                     className="text-xl font-bold text-left"
+                    onClick={() => navigate(`${location.pathname}?viewTask=${task._id}`)}
                 >{task.name}</button>
                 <p className="text-gray-400 text-pretty">{task.description}</p>
             </div>
@@ -59,24 +61,28 @@ export default function TaskCard({ task }: TaskCardProps) {
                                         View Task
                                     </button>
                                 </MenuItem>
-                                <MenuItem>
-                                    <button
-                                        type='button'
-                                        onClick={() => navigate(`${location.pathname}?editTask=${task._id}`)}
-                                        className='block px-3 py-1 text-sm leading-6 hover:text-gray-300'
-                                    >
-                                        Edit Task
-                                    </button>
-                                </MenuItem>
+                                {canEdit && (
+                                    <>
+                                        <MenuItem>
+                                            <button
+                                                type='button'
+                                                onClick={() => navigate(`${location.pathname}?editTask=${task._id}`)}
+                                                className='block px-3 py-1 text-sm leading-6 hover:text-gray-300'
+                                            >
+                                                Edit Task
+                                            </button>
+                                        </MenuItem>
 
-                                <MenuItem>
-                                    <button
-                                        type='button'
-                                        onClick={() => mutate({ projectId, taskId: task._id })}
-                                        className='block px-3 py-1 text-sm leading-6 text-rose-500 hover:text-rose-600'>
-                                        Delete Task
-                                    </button>
-                                </MenuItem>
+                                        <MenuItem>
+                                            <button
+                                                type='button'
+                                                onClick={() => mutate({ projectId, taskId: task._id })}
+                                                className='block px-3 py-1 text-sm leading-6 text-rose-500 hover:text-rose-600'>
+                                                Delete Task
+                                            </button>
+                                        </MenuItem>
+                                    </>
+                                )}
                             </MenuItems>
                         </Transition>
                     </Menu>
