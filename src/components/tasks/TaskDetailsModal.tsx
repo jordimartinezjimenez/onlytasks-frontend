@@ -4,7 +4,7 @@ import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 import { getTaskById, updateStatus } from '@/api/TaskAPI';
 import { toast } from 'react-toastify';
-import { formatDate } from '@/utils/utils';
+import { formatDate, formatDateNumeric } from '@/utils/utils';
 import { statusTranslations } from '@/locales/en';
 import { TaskStatus } from '@/types';
 
@@ -86,10 +86,8 @@ export default function TaskDetailsModal() {
                                     >{data.name}
                                     </DialogTitle>
                                     <p className='text-lg text-gray-400 mb-5 text-pretty'>{data.description}</p>
-                                    {data.completedBy && (
-                                        <p className='text-sm'><span className='font-bold text-gray-400'>Updated by:</span> {data.completedBy.name}</p>
-                                    )}
-                                    <div className=' space-y-3'>
+
+                                    <div className='mb-5 space-y-3'>
                                         <label className='font-bold'>Current Status:</label>
                                         <select
                                             defaultValue={data.status}
@@ -101,6 +99,17 @@ export default function TaskDetailsModal() {
                                             ))}
                                         </select>
                                     </div>
+                                    <p className='font-bold'>History of changes</p>
+                                    <ul className='list-decimal list-inside text-gray-400'>
+                                        {data.completedBy.map(log => (
+                                            <li
+                                                key={log._id}
+                                                className='text-sm'
+                                            >
+                                                <span className='font-medium'>{statusTranslations[log.status]} by:</span> <span className='text-slate-50'>{log.user.name} - {formatDateNumeric(log.updatedAt)}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </DialogPanel>
                             </TransitionChild>
                         </div>
