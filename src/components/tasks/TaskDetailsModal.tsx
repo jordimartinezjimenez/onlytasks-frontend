@@ -85,8 +85,11 @@ export default function TaskDetailsModal() {
                                         className="font-black text-4xl my-5"
                                     >{data.name}
                                     </DialogTitle>
-                                    <p className='text-lg text-gray-400 mb-2'>{data.description}</p>
-                                    <div className='my-5 space-y-3'>
+                                    <p className='text-lg text-gray-400 mb-5 text-pretty'>{data.description}</p>
+                                    {data.completedBy && (
+                                        <p className='text-sm'><span className='font-bold text-gray-400'>Updated by:</span> {data.completedBy.name}</p>
+                                    )}
+                                    <div className=' space-y-3'>
                                         <label className='font-bold'>Current Status:</label>
                                         <select
                                             defaultValue={data.status}

@@ -5,7 +5,10 @@ import { Outlet } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
 
 export default function AuthLayout() {
-    return (
+
+    const authenticated = localStorage.getItem('AUTH_TOKEN')
+
+    if (!authenticated) return (
         <>
             <Header />
             <section className="mt-10 py-10 lg:py-20 mx-auto w-[450px]">
