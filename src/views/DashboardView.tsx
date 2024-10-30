@@ -64,7 +64,7 @@ export default function DashboardView() {
                                         <p className="text-sm text-gray-400">
                                             Client: {project.clientName}
                                         </p>
-                                        <p className="text-sm text-gray-400 as text-ellipsis line-clamp-3 overflow-hidden text-pretty">
+                                        <p className="text-sm text-gray-400 text-ellipsis line-clamp-3 overflow-hidden text-pretty">
                                             {project.description}
                                         </p>
                                     </div>

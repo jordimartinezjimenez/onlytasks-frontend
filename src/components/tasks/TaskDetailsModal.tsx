@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import { formatDate, formatDateNumeric } from '@/utils/utils';
 import { statusTranslations } from '@/locales/en';
 import { TaskStatus } from '@/types';
+import NotesPanel from '../notes/NotesPanel';
 
 
 export default function TaskDetailsModal() {
@@ -99,17 +100,21 @@ export default function TaskDetailsModal() {
                                             ))}
                                         </select>
                                     </div>
-                                    <p className='font-bold'>History of changes</p>
-                                    <ul className='list-decimal list-inside text-gray-400'>
-                                        {data.completedBy.map(log => (
-                                            <li
-                                                key={log._id}
-                                                className='text-sm'
-                                            >
-                                                <span className='font-medium'>{statusTranslations[log.status]} by:</span> <span className='text-slate-50'>{log.user.name} - {formatDateNumeric(log.updatedAt)}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
+                                    {data.completedBy.length ? (
+                                        <>
+                                            <p className='font-bold'>History of changes:</p>
+                                            <ol reversed className='list-decimal list-inside text-gray-400 line-clamp-5 overflow-y-auto'>
+                                                {data.completedBy.map(log => (
+                                                    <li
+                                                        key={log._id}
+                                                        className='text-sm'
+                                                    >
+                                                        <span className='font-medium'>{statusTranslations[log.status]} by:</span> <span className='text-slate-50'>{log.user.name} - {formatDateNumeric(log.updatedAt)}</span>
+                                                    </li>
+                                                ))}
+                                            </ol></>
+                                    ) : null}
+                                    <NotesPanel notes={data.notes} />
                                 </DialogPanel>
                             </TransitionChild>
                         </div>
