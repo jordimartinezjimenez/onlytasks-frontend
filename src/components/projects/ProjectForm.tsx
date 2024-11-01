@@ -35,7 +35,7 @@ export default function ProjectForm({ register, errors }: ProjectFormProps) {
                 </label>
                 <input
                     id="clientName"
-                    className="w-full p-3  border border-gray-200 bg-neutral-800 rounded-md"
+                    className="w-full p-3 border border-gray-200 bg-neutral-800 rounded-md"
                     type="text"
                     placeholder="Name of the client"
                     {...register("clientName", {

@@ -38,11 +38,11 @@ export default function NavMenu({ name }: NavMenuProps) {
                         <Link
                             to='/projects'
                             className='block p-2 hover:text-slate-50/90'
-                        >My Projects</Link>
+                        >Projects</Link>
                         <Link
                             to='/profile'
                             className='block p-2 hover:text-slate-50/90'
-                        >Profile</Link>
+                        >My Profile</Link>
                         <button
                             className='block p-2 hover:text-slate-50/90'
                             type='button'

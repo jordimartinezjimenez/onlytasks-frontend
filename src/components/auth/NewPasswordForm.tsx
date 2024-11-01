@@ -79,7 +79,7 @@ export default function NewPasswordForm({ token }: NewPasswordFormProps) {
                         id="confirmPassword"
                         type="password"
                         placeholder="Repeat your new password"
-                        className="w-full p-3 bg-neutral-800 border-gray-300 border"
+                        className="w-full p-3 bg-neutral-800 border-gray-200 border"
                         {...register("confirmPassword", {
                             required: "Confirm password is required",
                             validate: value => value === password || 'Password are not equal'
@@ -94,7 +94,7 @@ export default function NewPasswordForm({ token }: NewPasswordFormProps) {
                 <input
                     type="submit"
                     value='Change Password'
-                    className="bg-primary hover:bg-primary w-full p-3 text-xl cursor-pointer rounded-lg"
+                    className="bg-primary hover:bg-primary/90 w-full p-3 text-xl cursor-pointer rounded-lg"
                 />
             </form>
         </>
