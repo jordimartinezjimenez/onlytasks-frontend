@@ -16,12 +16,14 @@ import ProjectTeamView from "./views/projects/ProjectTeamView"
 import ProfileView from "./views/profile/ProfileView"
 import ChangePasswordView from "./views/profile/ChangePasswordView"
 import ProfileLayout from "./layouts/ProfileLayout"
+import NotFound from "./views/404/NotFound"
 
 export default function Router() {
     return (
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<IndexView />} index />
+                <Route path="*" element={<NotFound />} />
                 <Route element={<AppLayout />}>
                     {/* <Route path="/" element={<DashboardView />} index /> */}
                     <Route path="/projects" element={<DashboardView />} />

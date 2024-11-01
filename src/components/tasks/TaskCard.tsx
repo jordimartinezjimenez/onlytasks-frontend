@@ -15,7 +15,7 @@ type TaskCardProps = {
 
 export default function TaskCard({ task, canEdit }: TaskCardProps) {
 
-    const { attributes, listeners, setNodeRef, transform } = useDraggable({
+    const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
         id: task._id,
     })
     const navigate = useNavigate()
@@ -34,31 +34,33 @@ export default function TaskCard({ task, canEdit }: TaskCardProps) {
         }
     })
 
-    const style = transform ? {
-        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-        padding: "1.25rem",
-        backgroundColor: "#262626",
-        width: "300px",
-        display: "flex"
-    } : undefined
+    const style = {
+        transform: transform && `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+        transition: isDragging ? 'none' : 'transform 0.2s ease',
+        zIndex: isDragging ? 1000 : 1,
+        boxShadow: isDragging && '0px 4px 12px rgba(0, 0, 0, 0.15)',
+        position: isDragging && 'relative'
+    } as React.CSSProperties;
 
     return (
-        <li className="p-5 bg-neutral-900/80 backdrop-blur flex justify-between gap-3">
+        <li style={style} className="relative p-5 bg-neutral-900/80 backdrop-blur flex justify-between gap-3">
             <div
-                className="min-w-0 flex flex-col gap-y-4"
+                className="min-w-0 flex flex-col gap-y-4 cursor-grab"
                 {...listeners}
                 {...attributes}
                 ref={setNodeRef}
-                style={style}
             >
-                <button
+                {/* <button
                     type="button"
                     className="text-xl font-bold text-left"
                     onClick={() => navigate(`${location.pathname}?viewTask=${task._id}`)}
-                >{task.name}</button>
+                >{task.name}</button> */}
+                <p
+                    className="text-xl font-bold text-left"
+                >{task.name}</p>
                 <p className="text-gray-400 text-pretty">{task.description}</p>
             </div>
-            <div>
+            <div className="absolute top-2 right-2">
                 <div className="flex shrink-0 items-center gap-x-6">
                     <Menu as="div" className="relative flex-none">
                         <MenuButton className="-m-2.5 block p-2.5 text-gray-500 hover:text-gray-600">

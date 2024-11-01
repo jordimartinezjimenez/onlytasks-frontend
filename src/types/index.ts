@@ -84,7 +84,7 @@ export const projectSchema = z.object({
     description: z.string(),
     manager: z.string(userSchema.pick({ _id: true })),
     tasks: z.array(taskProjectSchema),
-    team: z.array(userSchema.pick({ _id: true }))
+    team: z.array(z.string(userSchema.pick({ _id: true })))
 })
 
 export const dashboardProjectSchema = z.array(

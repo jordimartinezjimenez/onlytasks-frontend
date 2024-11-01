@@ -103,7 +103,7 @@ export default function TaskDetailsModal() {
                                     {data.completedBy.length ? (
                                         <>
                                             <p className='font-bold'>History of changes:</p>
-                                            <ol reversed className='list-decimal list-inside text-gray-400 line-clamp-5 overflow-y-auto'>
+                                            <ol reversed className='list-decimal list-inside text-gray-400 max-h-[100px] overflow-y-auto'>
                                                 {data.completedBy.map(log => (
                                                     <li
                                                         key={log._id}

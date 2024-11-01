@@ -1,12 +1,14 @@
 import Footer from "@/components/Footer"
 import Header from "@/components/Header"
 import Logo from "@/components/Logo"
-import { Outlet } from "react-router-dom"
+import { Navigate, Outlet } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
 
 export default function AuthLayout() {
 
     const authenticated = localStorage.getItem('AUTH_TOKEN')
+
+    if (authenticated) return <Navigate to="/" />
 
     if (!authenticated) return (
         <>
