@@ -17,6 +17,7 @@ export type RequestConfirmationCodeForm = Pick<Auth, 'email'>
 export type ForgotPasswordForm = Pick<Auth, 'email'>
 export type NewPasswordForm = Pick<Auth, 'password' | 'confirmPassword'>
 export type UpdateCurrentUserPasswordForm = Pick<Auth, 'currentPassword' | 'password' | 'confirmPassword'>
+export type CheckPasswordForm = Pick<Auth, 'password'>
 
 export type ConfirmToken = Pick<Auth, 'token'>
 
