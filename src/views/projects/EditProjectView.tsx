@@ -12,7 +12,7 @@ export default function EditProjectView() {
     const { data, isLoading, isError } = useQuery({
         queryKey: ["editProject", projectId],
         queryFn: () => getProjectById(projectId),
-        retry: 1
+        retry: false
     })
 
     if (isLoading) return "Loading..."
