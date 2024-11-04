@@ -13,7 +13,7 @@ export default function AuthLayout() {
     if (!authenticated) return (
         <>
             <Header />
-            <section className="mt-10 py-10 lg:py-20 mx-auto w-[450px]">
+            <section className="mt-10 py-10 lg:py-20 mx-auto max-w-[450px]">
                 <Logo />
                 <div className="mt-10">
                     <Outlet />
