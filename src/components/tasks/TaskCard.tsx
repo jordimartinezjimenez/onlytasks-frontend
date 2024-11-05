@@ -43,9 +43,9 @@ export default function TaskCard({ task, canEdit }: TaskCardProps) {
     } as React.CSSProperties;
 
     return (
-        <li style={style} className="relative p-5 bg-neutral-900/80 backdrop-blur flex justify-between gap-3">
+        <li style={style} className="relative bg-neutral-900/80 backdrop-blur flex justify-between gap-3">
             <div
-                className="min-w-0 flex flex-col gap-y-4 cursor-grab"
+                className="min-w-0 flex flex-col gap-y-4 cursor-grab w-full p-5"
                 {...listeners}
                 {...attributes}
                 ref={setNodeRef}
@@ -56,11 +56,11 @@ export default function TaskCard({ task, canEdit }: TaskCardProps) {
                     onClick={() => navigate(`${location.pathname}?viewTask=${task._id}`)}
                 >{task.name}</button> */}
                 <p
-                    className="text-xl font-bold text-left"
+                    className="text-xl font-bold text-left max-w-[95%] text-balance"
                 >{task.name}</p>
                 <p className="text-gray-400 text-pretty">{task.description}</p>
             </div>
-            <div className="absolute top-2 right-2">
+            <div className="absolute top-2 right-0">
                 <div className="flex shrink-0 items-center gap-x-6">
                     <Menu as="div" className="relative flex-none">
                         <MenuButton className="-m-2.5 block p-2.5 text-gray-500 hover:text-gray-600">
