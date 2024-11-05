@@ -25,7 +25,6 @@ export default function Router() {
                 <Route path="/" element={<IndexView />} index />
                 <Route path="*" element={<NotFound />} />
                 <Route element={<AppLayout />}>
-                    {/* <Route path="/" element={<DashboardView />} index /> */}
                     <Route path="/projects" element={<DashboardView />} />
                     <Route path="/projects/create" element={<CreateProjectView />} />
                     <Route path="/projects/:projectId" element={<ProjectDetailsView />} />

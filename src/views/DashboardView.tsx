@@ -7,6 +7,7 @@ import { getProjects } from "@/api/ProjectAPI"
 import { useAuth } from '@/hooks/useAuth'
 import { isManager } from '@/utils/policies'
 import DeleteProjectModal from '@/components/projects/DeleteProjectModal'
+import Spinner from '@/components/Spinner/Spinner'
 
 export default function DashboardView() {
 
@@ -18,7 +19,7 @@ export default function DashboardView() {
         queryFn: getProjects,
     })
 
-    if (isLoading && authLoading) return "Loading..."
+    if (isLoading && authLoading) return <Spinner />
 
     if (data && user) return (
         <>

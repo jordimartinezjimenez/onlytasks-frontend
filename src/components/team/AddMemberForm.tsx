@@ -5,6 +5,7 @@ import ErrorMessage from "../ErrorMessage"
 import { TeamMemberForm } from "@/types"
 import { findUserByEmail } from "@/api/TeamAPI"
 import SearchResult from "./SearchResult"
+import Spinner from "../Spinner/Spinner"
 
 export default function AddMemberForm() {
     const initialValues: TeamMemberForm = {
@@ -69,7 +70,7 @@ export default function AddMemberForm() {
             </form>
 
             <div className="mt-10">
-                {mutation.isPending && <p className="text-center">Loading...</p>}
+                {mutation.isPending && <Spinner />}
                 {mutation.error && <p className="text-center">{mutation.error.message}</p>}
                 {mutation.data && <SearchResult user={mutation.data} reset={resetData} />}
             </div>

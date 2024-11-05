@@ -1,4 +1,5 @@
 import { getProjectTeam, removeUserFromProject } from '@/api/TeamAPI'
+import Spinner from '@/components/Spinner/Spinner'
 import AddMemberModal from '@/components/team/AddMemberModal'
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react'
 import { EllipsisVerticalIcon } from '@heroicons/react/24/solid'
@@ -32,7 +33,7 @@ export default function ProjectTeamView() {
         }
     })
 
-    if (isLoading) return "Loading..."
+    if (isLoading) return <Spinner />
     if (isError) return <Navigate to={"/404"} />
 
     if (data) return (

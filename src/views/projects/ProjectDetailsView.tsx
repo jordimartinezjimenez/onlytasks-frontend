@@ -8,6 +8,7 @@ import TaskDetailsModal from "@/components/tasks/TaskDetailsModal"
 import { useAuth } from "@/hooks/useAuth"
 import { isManager } from "@/utils/policies"
 import { useMemo } from "react"
+import Spinner from "@/components/Spinner/Spinner"
 
 
 export default function ProjectDetailsView() {
@@ -25,7 +26,7 @@ export default function ProjectDetailsView() {
 
     const canEdit = useMemo(() => data?.manager === user?._id, [data, user])
 
-    if (isLoading && authLoading) return "Loading..."
+    if (isLoading && authLoading) return <Spinner />
     if (isError) return <Navigate to={"404"} />
 
     if (data && user) return (
