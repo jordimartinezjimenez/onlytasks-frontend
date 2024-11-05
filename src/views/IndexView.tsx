@@ -14,9 +14,12 @@ export default function IndexView() {
                     <Badge />
                     <h1
                         className="text-balance text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium text-transparent py-6 leading-none tracking-tighter bg-gradient-to-br from-white from-30% to-white/40 bg-clip-text"
-                    >OnlyTasks is the best way to manage tasks of projects.</h1>
-                    <p className="text-balance text-lg md:text-xl tracking-tight text-gray-400">
+                    >OnlyTasks brings all your projects, tasks, and teammates together</h1>
+                    {/* <p className="text-balance text-lg md:text-xl tracking-tight text-gray-400">
                         Beautifully designed, animated components and templates built with <br className="hidden md:block" />Tailwind CSS, React, and Framer Motion.
+                    </p> */}
+                    <p className="text-balance text-lg md:text-xl tracking-tight text-gray-400">
+                        Simplify life for both you and your team with the best task manager <br className="hidden md:block" />keeping everything in the same place-even if your team isn’t.
                     </p>
                     {/* <button className="bg-teal-800 hover:bg-teal-800/90 px-4 py-2 rounded-lg text-sm font-medium shadow"><span>Get Started for Free</span></button> */}
                     <Link

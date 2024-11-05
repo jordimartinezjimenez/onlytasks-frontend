@@ -84,8 +84,7 @@ export default function TaskList({ tasks, canEdit }: TaskListProps) {
     return (
         <>
             <h2 className="text-4xl font-black my-5">Tasks</h2>
-
-            <div className='flex gap-5 overflow-x-scroll 2xl:overflow-auto pb-32'>
+            <div className='flex gap-5 overflow-x-auto pb-32'>
                 <DndContext onDragEnd={handleDragEnd}>
                     {Object.entries(groupedTasks).map(([status, tasks]) => (
                         <div key={status} className='min-w-[300px] 2xl:min-w-0 2xl:w-1/5'>
